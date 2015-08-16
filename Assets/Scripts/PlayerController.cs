@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Controller : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
     public float speed = 6.0F;
     public float jumpSpeed = 8.0F;
     public float gravity = 20.0F;
@@ -11,6 +11,8 @@ public class Controller : MonoBehaviour {
     public float RotationSpeed=60;
     public float MaxRotation;
     private float rotationY;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -45,9 +47,19 @@ public class Controller : MonoBehaviour {
             controller.Move(moveDirection * Time.deltaTime);
         }
 
-        if (Input.GetKey("s"))
-        {
-            ShouldRun = true;
-        }
+        
 	}
+
+    void Update() 
+    {
+        if (!ShouldRun)
+        {
+            ShouldRun = Input.GetButton("Jump");
+            return;
+        }
+
+
+    }
+
+
 }

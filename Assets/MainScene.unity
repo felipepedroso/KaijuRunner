@@ -87,6 +87,33 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &218362243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 218362244}
+  m_Layer: 0
+  m_Name: ShootingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &218362244
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 218362243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: .389999986, z: .649999976}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 755641554}
+  m_RootOrder: 0
 --- !u!1 &473780386
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +256,7 @@ GameObject:
   - 23: {fileID: 755641551}
   - 114: {fileID: 755641555}
   - 143: {fileID: 755641556}
+  - 114: {fileID: 755641557}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -289,7 +317,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.6400001, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 218362244}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!114 &755641555
@@ -326,6 +355,22 @@ CharacterController:
   m_SkinWidth: .0799999982
   m_MinMoveDistance: .00100000005
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &755641557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 755641550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085f990a6cf37d14aa7ce53e54ec0eb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShootingPoint: {fileID: 218362244}
+  SmallShootPrefab: {fileID: 112594, guid: a08a4ffab04df0645afa0be3cfc3d31d, type: 2}
+  BigShootPrefab: {fileID: 112594, guid: 2306281e0534817419afe4784dd2c7ef, type: 2}
+  ShootingCooldown: .100000001
+  ChargeTime: 1
 --- !u!1 &1136668144
 GameObject:
   m_ObjectHideFlags: 0

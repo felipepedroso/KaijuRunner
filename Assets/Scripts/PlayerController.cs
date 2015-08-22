@@ -27,8 +27,7 @@ public class PlayerController : MonoBehaviour {
             CharacterController controller = GetComponent<CharacterController>();
             if (controller.isGrounded)
             {
-                moveDirection = Vector3.forward * Time.fixedDeltaTime;
-                moveDirection = transform.TransformDirection(moveDirection);
+                moveDirection = transform.TransformDirection(Vector3.forward);
                 moveDirection *= Speed;
 
                 float rotationAmount = inputManager.HorizontalAxis * RotationSpeed * Time.deltaTime;

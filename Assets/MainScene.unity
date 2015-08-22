@@ -307,7 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RotationSpeed: 60
   MaxRotation: 30
-  Speed: 500
+  Speed: 20
   JumpSpeed: 8
   Gravity: 20
 --- !u!143 &755641556

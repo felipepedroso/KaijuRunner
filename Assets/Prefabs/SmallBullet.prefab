@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3ca47bb6fa76648bfd7d0e18cb7fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 100
+  Speed: 1
   Lifetime: 1
 --- !u!1001 &100100000
 Prefab:
@@ -96,6 +96,10 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: Lifetime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Speed
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

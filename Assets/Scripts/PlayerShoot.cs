@@ -2,36 +2,35 @@
 using System.Collections;
 
 public class PlayerShoot : MonoBehaviour {
+    private float timePressedShoot;
+    private float shootingTimer;
+    private float lastShootTime;
+    private InputManager inputManager;
+
+    public float ChargeTime;
     public Transform ShootingPoint;
     public GameObject SmallShootPrefab;
     public GameObject BigShootPrefab;
     public float ShootingCooldown;
-    private float timePressedShoot;
-    private float shootingTimer;
-    public float ChargeTime;
-    private float lastShootTime;
-    public bool HasRequestedPressed;
-    public bool HasRequestedReleased;
-
 
 	// Use this for initialization
 	void Start () {
         timePressedShoot = 0;
         lastShootTime = 0;
+
+        inputManager = GameObject.FindObjectOfType<InputManager>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (ShootPressed())
+        if (inputManager.GetButtonDown("Fire1"))
         {
             timePressedShoot = Time.time;
             Debug.Log("Pressed shoot! " + timePressedShoot);
-            HasRequestedPressed = false;
         }
 
-        if (ShootReleased())
+        if (inputManager.GetButtonUp("Fire1"))
         {
-            
             if (Time.time - timePressedShoot >= ChargeTime)
             {
                 BigShoot();
@@ -43,7 +42,6 @@ public class PlayerShoot : MonoBehaviour {
                 Shoot();
             }
             timePressedShoot = 0;
-            HasRequestedReleased = false;
         }
 	}
 
@@ -51,28 +49,20 @@ public class PlayerShoot : MonoBehaviour {
     {
         if (BigShootPrefab != null)
         {
-            Instantiate(BigShootPrefab, ShootingPoint.position, gameObject.transform.rotation);
+            GameObject bulletGameObject = (GameObject)Instantiate(BigShootPrefab, ShootingPoint.position, gameObject.transform.rotation);
+            SetInertiaSpeed(bulletGameObject);
         }
     }
 
-    public bool ShootPressed() 
+    private void SetInertiaSpeed(GameObject bulletGameObject)
     {
-        return Input.GetButtonDown("Fire1") || HasRequestedPressed;
-    }
+        PlayerController playerController = gameObject.GetComponent<PlayerController>();
+        BulletBehaviour bulletBehaviour = bulletGameObject.GetComponent<BulletBehaviour>();
 
-    public bool ShootReleased()
-    {
-        return Input.GetButtonUp("Fire1") || HasRequestedReleased;
-    }
-
-    public void RequestPressed() 
-    {
-        HasRequestedPressed = true;
-    }
-
-    public void RequestRelease()
-    {
-        HasRequestedReleased = true;
+        if (playerController != null && bulletBehaviour != null)
+        {
+            bulletBehaviour.Speed += playerController.Speed;
+        }
     }
 
     public void Shoot()
@@ -83,7 +73,8 @@ public class PlayerShoot : MonoBehaviour {
 
             if (timeNow - lastShootTime >= ShootingCooldown)
             {
-                Instantiate(SmallShootPrefab, ShootingPoint.position, gameObject.transform.rotation);
+                GameObject bulletGameObject = (GameObject)Instantiate(SmallShootPrefab, ShootingPoint.position, gameObject.transform.rotation);
+                SetInertiaSpeed(bulletGameObject);
                 lastShootTime = timeNow;
             }
         }

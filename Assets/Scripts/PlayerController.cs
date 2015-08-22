@@ -2,21 +2,22 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-    public float speed = 6.0F;
-    public float jumpSpeed = 8.0F;
-    public float gravity = 20.0F;
+    
     private Vector3 moveDirection = Vector3.zero;
-
-    public bool ShouldRun;
+    private float rotationY;
+    private bool ShouldRun;
+    
     public float RotationSpeed=60;
     public float MaxRotation;
-    private float rotationY;
-
-
-
+    public float Speed = 6.0F;
+    public float JumpSpeed = 8.0F;
+    public float Gravity = 20.0F;
+    private InputManager inputManager;
+    
 	// Use this for initialization
 	void Start () {
         rotationY = 0;
+        inputManager = GameObject.FindObjectOfType<InputManager>();
 	}
 	
 	// Update is called once per frame
@@ -28,38 +29,29 @@ public class PlayerController : MonoBehaviour {
             {
                 moveDirection = Vector3.forward * Time.fixedDeltaTime;
                 moveDirection = transform.TransformDirection(moveDirection);
-                moveDirection *= speed;
+                moveDirection *= Speed;
 
-
-                float rotationAmount = Input.GetAxis("Horizontal") * RotationSpeed * Time.deltaTime;
+                float rotationAmount = inputManager.HorizontalAxis * RotationSpeed * Time.deltaTime;
                 rotationY += rotationAmount;
-
                 rotationY = Mathf.Clamp(rotationY, -MaxRotation, MaxRotation);
-
                 transform.rotation = Quaternion.Euler(0, rotationY, 0);
                 
 
-                if (Input.GetButton("Jump"))
-                    moveDirection.y = jumpSpeed;
+                if (inputManager.GetButton("Jump"))
+                    moveDirection.y = JumpSpeed;
 
             }
-            moveDirection.y -= gravity * Time.deltaTime;
+            moveDirection.y -= Gravity * Time.deltaTime;
             controller.Move(moveDirection * Time.deltaTime);
         }
-
-        
 	}
 
     void Update() 
     {
         if (!ShouldRun)
         {
-            ShouldRun = Input.GetButton("Jump");
+            ShouldRun = inputManager.GetButton("Jump") || inputManager.GetButton("Fire1");
             return;
         }
-
-
     }
-
-
 }

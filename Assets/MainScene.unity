@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 755641554}
-  distance: 4
+  distance: 8
   height: 1.5
   rotationDamping: 2
   heightDamping: 3
@@ -431,6 +431,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Source: 0
+  JumpExpression: 0
+  FireExpression: 19
+  MaxYaw: 30
+  MaxPitch: 30
+  JumpThreshold: 100
 --- !u!4 &1600679241
 Transform:
   m_ObjectHideFlags: 0

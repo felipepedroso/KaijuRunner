@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour {
                 transform.rotation = Quaternion.Euler(0, rotationY, 0);
                 
 
-                if (inputManager.GetButton("Jump"))
+                if (inputManager.GetButtonDown("Jump"))
                     moveDirection.y = JumpSpeed;
 
             }

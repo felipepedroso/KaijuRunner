@@ -38,6 +38,7 @@ public class InputManager : MonoBehaviour {
     public int MaxYaw;
     public int MaxPitch;
     public float JumpThreshold;
+    public float FireThreshold;
 
     void Start()
     {
@@ -59,13 +60,13 @@ public class InputManager : MonoBehaviour {
         expressionsThreshold = new Dictionary<PXCMFaceData.ExpressionsData.FaceExpression, float>();
 
         InitializeExpression(JumpExpression, JumpThreshold);
+        InitializeExpression(FireExpression, FireThreshold);
     }
 
     private void InitializeExpression(PXCMFaceData.ExpressionsData.FaceExpression expression, float expressionThreshold)
     {
         expressionsLastStatus.Add(expression, false);
         expressionsThreshold.Add(expression, expressionThreshold);
-
     }
 
     private void InitializeButtonMapping()
@@ -231,18 +232,26 @@ public class InputManager : MonoBehaviour {
     {
         PXCMFaceData.ExpressionsData expressionsData = face.QueryExpressions();
 
+        if (expressionsData != null)
+        {
+            ProcessExpressionAsButton(expressionsData, JumpExpression, JUMP_BUTTON);
+            ProcessExpressionAsButton(expressionsData, FireExpression, FIRE_BUTTON);
+        }
+    }
+
+    private void ProcessExpressionAsButton(PXCMFaceData.ExpressionsData expressionsData, PXCMFaceData.ExpressionsData.FaceExpression expression, string button)
+    {
         PXCMFaceData.ExpressionsData.FaceExpressionResult expressionResult;
 
-        PXCMFaceData.ExpressionsData.FaceExpression expression = JumpExpression;
         if (expressionsData.QueryExpression(expression, out expressionResult))
         {
             bool lastStatus = expressionsLastStatus[expression];
             bool currentStatus = expressionResult.intensity >= expressionsThreshold[expression];
             Debug.Log(expressionResult.intensity);
 
-            buttonDown[JUMP_BUTTON] = !lastStatus && currentStatus;
-            buttonUp[JUMP_BUTTON] = lastStatus && !currentStatus;
-            buttonHold[JUMP_BUTTON] = currentStatus;
+            buttonDown[button] = !lastStatus && currentStatus;
+            buttonUp[button] = lastStatus && !currentStatus;
+            buttonHold[button] = currentStatus;
 
             expressionsLastStatus[expression] = currentStatus;
         }

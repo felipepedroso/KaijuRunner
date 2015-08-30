@@ -14,9 +14,7 @@ public class BuildingCreator : MonoBehaviour {
 
     IEnumerator CreateBuildings()
     {
-        Debug.Log("Creating a MF buldings for the MF " + transform.parent.gameObject.name);
         Vector3 floorLocalScale = FloorGameObject.transform.localScale;
-
 
         for (int i = 0; i < 2; i++)
         {

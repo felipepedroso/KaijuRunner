@@ -247,7 +247,7 @@ public class InputManager : MonoBehaviour {
         {
             bool lastStatus = expressionsLastStatus[expression];
             bool currentStatus = expressionResult.intensity >= expressionsThreshold[expression];
-            Debug.Log(expressionResult.intensity);
+            //Debug.Log(string.Format("Intensity for expression {0}: {1}", expression, expressionResult.intensity));
 
             buttonDown[button] = !lastStatus && currentStatus;
             buttonUp[button] = lastStatus && !currentStatus;

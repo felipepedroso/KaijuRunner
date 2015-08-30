@@ -26,7 +26,7 @@ public class PlayerShoot : MonoBehaviour {
         if (inputManager.GetButtonDown("Fire1"))
         {
             timePressedShoot = Time.time;
-            Debug.Log("Pressed shoot! " + timePressedShoot);
+            //Debug.Log("Pressed shoot! " + timePressedShoot);
         }
 
         if (inputManager.GetButtonUp("Fire1"))
@@ -34,11 +34,11 @@ public class PlayerShoot : MonoBehaviour {
             if (Time.time - timePressedShoot >= ChargeTime)
             {
                 BigShoot();
-                Debug.Log("Released Big Shoot!");
+                //Debug.Log("Released Big Shoot!");
             }
             else
             {
-                Debug.Log("Released Shoot!");
+                //Debug.Log("Released Shoot!");
                 Shoot();
             }
             timePressedShoot = 0;

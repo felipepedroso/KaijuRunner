@@ -13,9 +13,6 @@ public class InputManager : MonoBehaviour {
     private Dictionary<string, bool> buttonUp;
     private Dictionary<string, bool> buttonDown;
 
-    private Dictionary<PXCMFaceData.ExpressionsData.FaceExpression, bool> expressionsLastStatus;
-    private Dictionary<PXCMFaceData.ExpressionsData.FaceExpression, float> expressionsThreshold;
-    
 
     private PXCMSenseManager senseManager;
     private PXCMFaceModule faceModule;
@@ -37,8 +34,7 @@ public class InputManager : MonoBehaviour {
     public PXCMFaceData.ExpressionsData.FaceExpression FireExpression;
     public int MaxYaw;
     public int MaxPitch;
-    public float JumpThreshold;
-    public float FireThreshold;
+    private Dictionary<string, ExpressionButton> expressionButtonsMap;
 
     void Start()
     {
@@ -56,17 +52,9 @@ public class InputManager : MonoBehaviour {
 
     private void InitializeExpressionMapping()
     {
-        expressionsLastStatus = new Dictionary<PXCMFaceData.ExpressionsData.FaceExpression, bool>();
-        expressionsThreshold = new Dictionary<PXCMFaceData.ExpressionsData.FaceExpression, float>();
-
-        InitializeExpression(JumpExpression, JumpThreshold);
-        InitializeExpression(FireExpression, FireThreshold);
-    }
-
-    private void InitializeExpression(PXCMFaceData.ExpressionsData.FaceExpression expression, float expressionThreshold)
-    {
-        expressionsLastStatus.Add(expression, false);
-        expressionsThreshold.Add(expression, expressionThreshold);
+        expressionButtonsMap = new Dictionary<string, ExpressionButton>();
+        expressionButtonsMap.Add(JUMP_BUTTON, new ExpressionButton(JumpExpression, 100, 0.1f));
+        expressionButtonsMap.Add(FIRE_BUTTON, new ExpressionButton(FireExpression, 60, 0.1f));
     }
 
     private void InitializeButtonMapping()
@@ -232,30 +220,18 @@ public class InputManager : MonoBehaviour {
     {
         PXCMFaceData.ExpressionsData expressionsData = face.QueryExpressions();
 
-        if (expressionsData != null)
+        foreach (var button in expressionButtonsMap.Keys)
         {
-            ProcessExpressionAsButton(expressionsData, JumpExpression, JUMP_BUTTON);
-            ProcessExpressionAsButton(expressionsData, FireExpression, FIRE_BUTTON);
+            var expressionButton = expressionButtonsMap[button];
+            
+            expressionButton.UpdateStatus(expressionsData);
+            //Debug.Log(expressionButton);
+            buttonHold[button] = expressionButton.ButtonHold;
+            buttonUp[button] = expressionButton.ButtonUp;
+            buttonDown[button] = expressionButton.ButtonDown;
         }
     }
 
-    private void ProcessExpressionAsButton(PXCMFaceData.ExpressionsData expressionsData, PXCMFaceData.ExpressionsData.FaceExpression expression, string button)
-    {
-        PXCMFaceData.ExpressionsData.FaceExpressionResult expressionResult;
-
-        if (expressionsData.QueryExpression(expression, out expressionResult))
-        {
-            bool lastStatus = expressionsLastStatus[expression];
-            bool currentStatus = expressionResult.intensity >= expressionsThreshold[expression];
-            //Debug.Log(string.Format("Intensity for expression {0}: {1}", expression, expressionResult.intensity));
-
-            buttonDown[button] = !lastStatus && currentStatus;
-            buttonUp[button] = lastStatus && !currentStatus;
-            buttonHold[button] = currentStatus;
-
-            expressionsLastStatus[expression] = currentStatus;
-        }
-    }
 
     private void ProcessPose(PXCMFaceData.Face face)
     {

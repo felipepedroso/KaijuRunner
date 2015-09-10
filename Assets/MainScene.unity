@@ -551,8 +551,6 @@ MonoBehaviour:
   FireExpression: 5
   MaxYaw: 30
   MaxPitch: 30
-  JumpThreshold: 100
-  FireThreshold: 60
 --- !u!4 &1600679241
 Transform:
   m_ObjectHideFlags: 0

@@ -4,8 +4,6 @@ using System.Collections;
 public class BuildingCreator : MonoBehaviour {
     public GameObject FloorGameObject;
 
-    private int count = 0;
-
     void Start()
     {
         StartCoroutine("CreateBuildings");

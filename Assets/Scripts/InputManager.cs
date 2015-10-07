@@ -247,13 +247,13 @@ public class InputManager : MonoBehaviour {
 
                 PXCMPointF32 smoothedAngles = smoother2D.SmoothValue(new PXCMPointF32(poseEulerAngles.yaw, poseEulerAngles.pitch));
 
-                float yaw = Mathf.Clamp(smoothedAngles.x, -Mathf.Abs(MaxYaw), Mathf.Abs(MaxYaw));
-                float pitch = Mathf.Clamp(smoothedAngles.y, -Mathf.Abs(MaxPitch), Mathf.Abs(MaxPitch));
+				float yaw = smoothedAngles.x;
+                float pitch = smoothedAngles.y;
 
                 //Debug.Log(string.Format("Yaw:{0} Pitch: {1}", yaw, pitch));
 
-                horizontalAxis = yaw / MaxYaw;
-                verticalAxis = pitch / MaxPitch;
+				horizontalAxis = Mathf.Clamp(yaw, -Mathf.Abs(MaxYaw), Mathf.Abs(MaxYaw)) / MaxYaw;
+				verticalAxis = Mathf.Clamp(pitch, -Mathf.Abs(MaxPitch), Mathf.Abs(MaxPitch)) / MaxPitch;
             }
         }
     }

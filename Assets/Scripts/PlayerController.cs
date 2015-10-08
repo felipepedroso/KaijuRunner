@@ -60,7 +60,19 @@ public class PlayerController : MonoBehaviour
 
         Vector3 pushDir = new Vector3(hit.moveDirection.x, hit.moveDirection.y, hit.moveDirection.z);
         body.velocity = pushDir * Strenght;
+
+        if (hit.gameObject.tag.ToLower().Equals("obstacle"))
+        {
+            ObstacleBehaviour ob = hit.gameObject.GetComponent<ObstacleBehaviour>();
+
+            if (ob != null)
+            {
+                gameObject.SendMessage("TakeDamage", ob.DamageAmount);
+            }
+        }
     }
+
+
 
     void Update()
     {

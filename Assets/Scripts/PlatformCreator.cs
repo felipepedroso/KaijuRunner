@@ -24,9 +24,9 @@ public class PlatformCreator : MonoBehaviour {
 				Vector3 position = new Vector3(0, 0, currentPosition.z + currentSize.z);
                 GameObject newFloor = (GameObject)Instantiate(FloorPrefab, position, Quaternion.identity);
                 newFloor.name = "Floor" + PlataformNameCount++;
-
+                Destroy(gameObject);
             }
         }
-        Destroy(gameObject);
+        
     }
 }

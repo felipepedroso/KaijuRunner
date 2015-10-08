@@ -5,6 +5,11 @@ public class FloorScript : MonoBehaviour {
 
     void OnBecameInvisible() 
     {
-        Destroy(transform.parent.gameObject);
+        if (transform.parent != null)
+        {
+            Destroy(transform.parent.gameObject);
+        }
+
+        Destroy(gameObject);
     }
 }

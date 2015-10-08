@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,11 +13,16 @@ public class PlayerController : MonoBehaviour
     public float JumpSpeed = 8.0F;
     public float Gravity = 20.0F;
     public Transform PlayerTarget;
+    public float Strenght;
+
+    private float zStart;
+    public Text DistanceValueText;
 
     // Use this for initialization
     void Start()
     {
         inputManager = GameObject.FindObjectOfType<InputManager>();
+        zStart = gameObject.transform.position.z;
     }
 
     // Update is called once per frame
@@ -44,6 +50,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnControllerColliderHit(ControllerColliderHit hit) {
+        Rigidbody body = hit.collider.attachedRigidbody;
+        if (body == null || body.isKinematic)
+            return;
+
+        if (hit.moveDirection.y < -0.3F)
+            return;
+
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, hit.moveDirection.y, hit.moveDirection.z);
+        body.velocity = pushDir * Strenght;
+    }
+
     void Update()
     {
         if (!ShouldRun)
@@ -51,5 +69,7 @@ public class PlayerController : MonoBehaviour
             ShouldRun = inputManager.GetButton("Jump") || inputManager.GetButton("Fire1");
             return;
         }
+
+        DistanceValueText.text = string.Format("{0:00000000}", (int)(gameObject.transform.position.z - zStart)/10); 
     }
 }

@@ -86,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 147772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 142}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 485530}
@@ -101,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 128054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: -48.0999985}
+  m_LocalPosition: {x: 0, y: 1.66666675, z: -32.0666656}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 420952}
@@ -195,6 +195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39bbd024f982854493d37c3db66b2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObstaclesPrefabs:
+  - {fileID: 114458, guid: 341b9d355f6d2184993c5112d317f09f, type: 2}
+  - {fileID: 100022, guid: b592d2faa93e6ad46a6d520adf8f123e, type: 2}
+  PlatformGameObject: {fileID: 101876}
+  MaxObstacles: 10
 --- !u!114 &11473208
 MonoBehaviour:
   m_ObjectHideFlags: 1

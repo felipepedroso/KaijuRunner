@@ -5,7 +5,8 @@ public class ObstaclesCreator : MonoBehaviour {
     public GameObject[] ObstaclesPrefabs;
     public GameObject PlatformGameObject;
 
-    public int MaxObstacles;
+    public int Rows;
+    public int Columns;
 
 	// Use this for initialization
 	void Start () {
@@ -24,22 +25,22 @@ public class ObstaclesCreator : MonoBehaviour {
         float minX = platformPosition.x - platformDimensions.x * 0.125f;
         float maxX = platformPosition.x + platformDimensions.x * 0.125f;
 
-        int obstaclesCount = Random.Range(1, MaxObstacles);
+        float zOffset = platformDimensions.z / (Rows + 1);
+        float xOffset = (platformDimensions.x * 0.25f) / (Columns + 1);
 
-        float diffBetweenObstacles = platformDimensions.z / (obstaclesCount + 1);
-
-        for (int i = 0; i < obstaclesCount; i++)
+        for (int i = 0; i < Rows; i++)
         {
-            GameObject obstaclePrefab = ObstaclesPrefabs[Random.Range(0, ObstaclesPrefabs.Length)];
-       
+            for (int j = 0; j < Columns; j++)
+            {
+                if (Random.Range(0, 100) % 2 == 0)
+                {
+                    continue;
+                }
+                GameObject obstaclePrefab = ObstaclesPrefabs[Random.Range(0, ObstaclesPrefabs.Length)];
 
-            GameObject go = (GameObject)Instantiate(obstaclePrefab, new Vector3(0.0f, 1.5f, minZ + ((i+1) * diffBetweenObstacles)), Quaternion.identity);
-            go.transform.parent = gameObject.transform;
-
-            float obstacleWidth = GetObstacleDimensions(go).x;
-            float x = Random.Range(minX + obstacleWidth / 2, maxX - obstacleWidth/2);
-
-            go.transform.position = new Vector3(x, go.transform.position.y, go.transform.position.z);
+                GameObject go = (GameObject)Instantiate(obstaclePrefab, new Vector3(minX + ((j+1) * xOffset), 1.5f, minZ + ((i + 1) * zOffset)), Quaternion.identity);
+                go.transform.parent = gameObject.transform;
+            }
         }
 	}
 

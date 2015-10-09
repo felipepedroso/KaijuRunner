@@ -14,14 +14,14 @@ public class PlayerHealth : MonoBehaviour {
     public float DamageFadingSpeed;
     public Color DamageColor = new Color(1f, 0f, 0f, 0.1f);
     private bool receivedDamage;
-    private PlayerController controller;
-    private PlayerController playerShooter;
+    private PlayerMovement controller;
+    private PlayerMovement playerShooter;
 
     // Use this for initialization
     void Start () {
         CurrentHealth = StartingHealth;
-        controller = gameObject.GetComponent<PlayerController>();
-        playerShooter = gameObject.GetComponent<PlayerController>();
+        controller = gameObject.GetComponent<PlayerMovement>();
+        playerShooter = gameObject.GetComponent<PlayerMovement>();
     }
 	
 	// Update is called once per frame

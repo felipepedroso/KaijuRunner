@@ -56,7 +56,7 @@ public class PlayerShoot : MonoBehaviour {
 
     private void SetInertiaSpeed(GameObject bulletGameObject)
     {
-        PlayerController playerController = gameObject.GetComponent<PlayerController>();
+        PlayerMovement playerController = gameObject.GetComponent<PlayerMovement>();
         BulletBehaviour bulletBehaviour = bulletGameObject.GetComponent<BulletBehaviour>();
 
         if (playerController != null && bulletBehaviour != null)

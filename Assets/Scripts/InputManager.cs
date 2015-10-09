@@ -81,7 +81,7 @@ public class InputManager : MonoBehaviour {
 
         if (senseManager == null)
         {
-            Debug.Log("Unable to create SenseManager.");
+            Debug.LogError("Unable to create SenseManager.");
             return false;
         }
 
@@ -89,7 +89,7 @@ public class InputManager : MonoBehaviour {
 
         if (status != pxcmStatus.PXCM_STATUS_NO_ERROR)
         {
-            Debug.Log("Couldn't enable the Face Module.");
+            Debug.LogError("Couldn't enable the Face Module.");
             return false;
         }
 
@@ -97,7 +97,7 @@ public class InputManager : MonoBehaviour {
 
         if (faceModule == null)
         {
-            Debug.Log("Couldn't query the Face Module.");
+            Debug.LogError("Couldn't query the Face Module.");
             return false;
         }
 
@@ -105,7 +105,7 @@ public class InputManager : MonoBehaviour {
 
         if (faceConfiguration == null)
         {
-            Debug.Log("Couldn't create an active configuration.");
+            Debug.LogError("Couldn't create an active configuration.");
             return false;
         }
 
@@ -118,14 +118,14 @@ public class InputManager : MonoBehaviour {
         status = expressionsConfiguration.EnableExpression(JumpExpression);
         if (status != pxcmStatus.PXCM_STATUS_NO_ERROR)
         {
-            Debug.Log("Unable to enable the expression " + JumpExpression + ".");
+            Debug.LogError("Unable to enable the expression " + JumpExpression + ".");
             return false;
         }
 
         status = expressionsConfiguration.EnableExpression(FireExpression);
         if (status != pxcmStatus.PXCM_STATUS_NO_ERROR)
         {
-            Debug.Log("Unable to enable the expression " + FireExpression + ".");
+            Debug.LogError("Unable to enable the expression " + FireExpression + ".");
             return false;
         }
 
@@ -133,14 +133,14 @@ public class InputManager : MonoBehaviour {
 
         if (status != pxcmStatus.PXCM_STATUS_NO_ERROR)
         {
-            Debug.Log("Unable to apply configuration settings.");
+            Debug.LogError("Unable to apply configuration settings.");
             return false;
         }
 
         faceData = faceModule.CreateOutput();
         if (faceData == null)
         {
-            Debug.Log("Couldn't create the data output object.");
+            Debug.LogError("Couldn't create the data output object.");
             return false;
         }
 
@@ -148,7 +148,7 @@ public class InputManager : MonoBehaviour {
 
         if (status != pxcmStatus.PXCM_STATUS_NO_ERROR)
         {
-            Debug.Log("Unable to initialize SenseManager.");
+            Debug.LogError("Unable to initialize SenseManager.");
             return false;
         }
 
@@ -159,7 +159,7 @@ public class InputManager : MonoBehaviour {
 
         if (status != pxcmStatus.PXCM_STATUS_NO_ERROR)
         {
-            Debug.Log("Failed to create the smoother.");
+            Debug.LogError("Failed to create the smoother.");
             return false;
         }
 
@@ -188,14 +188,14 @@ public class InputManager : MonoBehaviour {
     {
         if (senseManager == null)
         {
-            Debug.Log("RealSense needs to be intialized properly. Changing the input to keyboard.");
+            Debug.LogError("RealSense needs to be intialized properly. Changing the input to keyboard.");
             Source = InputSource.KEYBOARD;
             return;
         }
 
         if (senseManager.AcquireFrame(false) < pxcmStatus.PXCM_STATUS_NO_ERROR)
         {
-            Debug.Log("Failed to acquire the frame.");
+            Debug.LogError("Failed to acquire the frame.");
             return;
         }
 

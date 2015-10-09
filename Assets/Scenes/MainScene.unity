@@ -548,6 +548,7 @@ GameObject:
   - 143: {fileID: 755641556}
   - 114: {fileID: 755641557}
   - 114: {fileID: 755641558}
+  - 114: {fileID: 755641559}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -606,7 +607,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 755641550}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.6400001, z: -46.9099998}
+  m_LocalPosition: {x: 0, y: 2.6400001, z: 61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 218362244}
@@ -629,7 +630,6 @@ MonoBehaviour:
   Gravity: 20
   PlayerTarget: {fileID: 2083175063}
   Strenght: 50
-  DistanceValueText: {fileID: 842478490}
 --- !u!143 &755641556
 CharacterController:
   m_ObjectHideFlags: 0
@@ -681,6 +681,19 @@ MonoBehaviour:
   DamageOverlay: {fileID: 280337797}
   DamageFadingSpeed: 5
   DamageColor: {r: 1, g: 0, b: 0, a: .100000001}
+--- !u!114 &755641559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 755641550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c024b5027afd374abb1e9563a70d608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DistanceValueText: {fileID: 842478490}
+  Multiplier: 10
 --- !u!1 &842478488
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +804,14 @@ Prefab:
     - target: {fileID: 420952, guid: b96d98740b2d95a4e9b04a7f12d0ebcb, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448524, guid: b96d98740b2d95a4e9b04a7f12d0ebcb, type: 2}
+      propertyPath: Rows
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448524, guid: b96d98740b2d95a4e9b04a7f12d0ebcb, type: 2}
+      propertyPath: Columns
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b96d98740b2d95a4e9b04a7f12d0ebcb, type: 2}

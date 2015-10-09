@@ -197,8 +197,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObstaclesPrefabs:
   - {fileID: 177410, guid: 341b9d355f6d2184993c5112d317f09f, type: 2}
+  CollectiblesPrefabs:
+  - {fileID: 114134, guid: 5aa27da5cc991a748affc4eab666b645, type: 2}
   PlatformGameObject: {fileID: 101876}
-  Rows: 5
+  Rows: 15
   Columns: 5
 --- !u!114 &11473208
 MonoBehaviour:

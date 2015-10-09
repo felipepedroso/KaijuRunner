@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ObstaclesCreator : MonoBehaviour {
     public GameObject[] ObstaclesPrefabs;
+    public GameObject[] CollectiblesPrefabs;
     public GameObject PlatformGameObject;
 
     public int Rows;
@@ -10,7 +11,7 @@ public class ObstaclesCreator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (ObstaclesPrefabs == null || ObstaclesPrefabs.Length < 1 || PlatformGameObject == null)
+        if (ObstaclesPrefabs == null || ObstaclesPrefabs.Length < 1 || CollectiblesPrefabs == null || CollectiblesPrefabs.Length < 1 || PlatformGameObject == null)
         {
             Debug.LogError("Please check if the obstacles prefabs or the Platform GameObject where set.");
             return;
@@ -32,14 +33,29 @@ public class ObstaclesCreator : MonoBehaviour {
         {
             for (int j = 0; j < Columns; j++)
             {
-                if (Random.Range(0, 100) % 2 == 0)
+                int randomNumber = Random.Range(0, 100);
+                GameObject[] gameObjectSource = null;
+
+                if (randomNumber < 25)
                 {
                     continue;
                 }
-                GameObject obstaclePrefab = ObstaclesPrefabs[Random.Range(0, ObstaclesPrefabs.Length)];
+                else if (randomNumber < 60)
+                {
+                    gameObjectSource = CollectiblesPrefabs;
+                }
+                else
+                {
+                    gameObjectSource = ObstaclesPrefabs;
+                }
 
-                GameObject go = (GameObject)Instantiate(obstaclePrefab, new Vector3(minX + ((j+1) * xOffset), 1.5f, minZ + ((i + 1) * zOffset)), Quaternion.identity);
-                go.transform.parent = gameObject.transform;
+                if (gameObjectSource != null && gameObjectSource.Length > 0)
+                {
+                    GameObject obstaclePrefab = gameObjectSource[Random.Range(0, gameObjectSource.Length)];
+
+                    GameObject go = (GameObject)Instantiate(obstaclePrefab, new Vector3(minX + ((j + 1) * xOffset), 1.5f, minZ + ((i + 1) * zOffset)), obstaclePrefab.transform.rotation);
+                    go.transform.parent = gameObject.transform;
+                }
             }
         }
 	}

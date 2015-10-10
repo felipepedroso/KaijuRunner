@@ -711,7 +711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingHealth: 100
   CurrentHealth: 0
-  IsInvencible: 1
+  IsInvencible: 0
   HealthSlider: {fileID: 486830507}
   DamageOverlay: {fileID: 280337797}
   DamageFadingSpeed: 5
@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f93b46909104b409959c2e2e59ba01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Strenght: 10
+  Strenght: 30
 --- !u!114 &755641561
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -56,6 +56,11 @@ public class PlayerHealth : MonoBehaviour {
         }
     }
 
+    public void LifeCollected(int amount)
+    {
+        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, StartingHealth);
+    }
+
     private void Death()
     {
 

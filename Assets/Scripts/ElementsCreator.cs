@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ObstaclesCreator : MonoBehaviour {
+public class ElementsCreator : MonoBehaviour {
     public GameObject[] ObstaclesPrefabs;
     public GameObject[] CollectiblesPrefabs;
     public GameObject PlatformGameObject;
@@ -21,10 +21,7 @@ public class ObstaclesCreator : MonoBehaviour {
         Vector3 platformDimensions = PlatformGameObject.GetComponent<Renderer>().bounds.size;
 
         float minZ = platformPosition.z - platformDimensions.z/2;
-        float maxZ = platformPosition.z + platformDimensions.z/2;
-
         float minX = platformPosition.x - platformDimensions.x * 0.125f;
-        float maxX = platformPosition.x + platformDimensions.x * 0.125f;
 
         float zOffset = platformDimensions.z / (Rows + 1);
         float xOffset = (platformDimensions.x * 0.25f) / (Columns + 1);
@@ -59,25 +56,4 @@ public class ObstaclesCreator : MonoBehaviour {
             }
         }
 	}
-
-    private Vector3 GetObstacleDimensions(GameObject go)
-    {
-        Bounds bounds = new Bounds(Vector3.zero, Vector3.zero);
-
-        if (go.GetComponent<Collider>() != null)
-        {
-            bounds.Encapsulate(go.GetComponent<Collider>().bounds);
-        }
-        else
-        {
-            var childrenColliders = go.GetComponentsInChildren<Collider>();
-
-            foreach (var collider in childrenColliders)
-            {
-                bounds.Encapsulate(bounds);
-            }
-        }
-
-        return bounds.size;
-    }
 }

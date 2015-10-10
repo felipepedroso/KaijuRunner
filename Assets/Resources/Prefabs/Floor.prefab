@@ -61,7 +61,7 @@ GameObject:
   - 4: {fileID: 414316}
   - 114: {fileID: 11448524}
   m_Layer: 0
-  m_Name: ObstaclesCreator
+  m_Name: ElementsCreator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,6 +199,7 @@ MonoBehaviour:
   - {fileID: 177410, guid: 341b9d355f6d2184993c5112d317f09f, type: 2}
   CollectiblesPrefabs:
   - {fileID: 114134, guid: 5aa27da5cc991a748affc4eab666b645, type: 2}
+  - {fileID: 181144, guid: 658888c648a449f4c9d0fb0db497c4cd, type: 2}
   PlatformGameObject: {fileID: 101876}
   Rows: 15
   Columns: 5

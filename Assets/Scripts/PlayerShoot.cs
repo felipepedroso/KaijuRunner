@@ -13,6 +13,8 @@ public class PlayerShoot : MonoBehaviour {
     public GameObject BigShootPrefab;
     public float ShootingCooldown;
 
+    public GameObject FireballPrefab;
+
 	// Use this for initialization
 	void Start () {
         timePressedShoot = 0;
@@ -73,9 +75,17 @@ public class PlayerShoot : MonoBehaviour {
 
             if (timeNow - lastShootTime >= ShootingCooldown)
             {
-                GameObject bulletGameObject = (GameObject)Instantiate(SmallShootPrefab, ShootingPoint.position, gameObject.transform.rotation);
-                SetInertiaSpeed(bulletGameObject);
-                lastShootTime = timeNow;
+                if (FireballPrefab != null)
+                {
+                    GameObject fireballGo = (GameObject)Instantiate(FireballPrefab, ShootingPoint.position, gameObject.transform.rotation);
+                    ParticleSystem ps = fireballGo.GetComponent<ParticleSystem>();
+                    PlayerMovement playerController = gameObject.GetComponent<PlayerMovement>();
+                    ps.startSpeed += playerController.Speed;
+                    ps.Emit(1);
+                }
+                //GameObject bulletGameObject = (GameObject)Instantiate(SmallShootPrefab, ShootingPoint.position, gameObject.transform.rotation);
+                //SetInertiaSpeed(bulletGameObject);
+                //lastShootTime = timeNow;
             }
         }
     }

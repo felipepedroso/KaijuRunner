@@ -698,6 +698,7 @@ MonoBehaviour:
   SmallShootPrefab: {fileID: 112594, guid: a08a4ffab04df0645afa0be3cfc3d31d, type: 2}
   BigShootPrefab: {fileID: 112594, guid: 2306281e0534817419afe4784dd2c7ef, type: 2}
   ShootingCooldown: .100000001
+  FireballPrefab: {fileID: 0}
 --- !u!114 &755641558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,7 +712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingHealth: 100
   CurrentHealth: 0
-  IsInvencible: 0
+  IsInvencible: 1
   HealthSlider: {fileID: 486830507}
   DamageOverlay: {fileID: 280337797}
   DamageFadingSpeed: 5

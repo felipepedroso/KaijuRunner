@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BulletBehaviour : MonoBehaviour {
+public class ProjectileMovement : MonoBehaviour {
     public float Speed;
     public float Lifetime;
 
     void Start() {
         gameObject.GetComponent<MeshRenderer>().material.color = new Color(Random.value, Random.value, Random.value);
-        Destroy(gameObject, Lifetime);
+        if (Lifetime > 0)
+        {
+            Destroy(gameObject, Lifetime);
+        }
     }
 	
 	// Update is called once per frame

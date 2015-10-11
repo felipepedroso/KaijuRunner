@@ -18,9 +18,9 @@ TagManager:
   - 
   - Collectibles
   - Obstacles
-  - 
-  - 
-  - 
+  - Player
+  - Floor
+  - Projectile
   - 
   - 
   - 

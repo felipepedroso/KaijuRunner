@@ -12,18 +12,15 @@ public class PlayerShoot : MonoBehaviour {
     public GameObject SmallShootPrefab;
     public GameObject BigShootPrefab;
     public float ShootingCooldown;
+    public float ShootingAngle;
 
-    public GameObject FireballPrefab;
-
-	// Use this for initialization
-	void Start () {
+    void Start () {
         timePressedShoot = 0;
         lastShootTime = 0;
 
         inputManager = GameObject.FindObjectOfType<InputManager>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
         if (inputManager.GetButtonDown("Fire1"))
         {
@@ -51,7 +48,7 @@ public class PlayerShoot : MonoBehaviour {
     {
         if (BigShootPrefab != null)
         {
-            GameObject bulletGameObject = (GameObject)Instantiate(BigShootPrefab, ShootingPoint.position, gameObject.transform.rotation);
+            GameObject bulletGameObject = (GameObject)Instantiate(BigShootPrefab, ShootingPoint.position, gameObject.transform.rotation * Quaternion.Euler(ShootingAngle, 0.0f, 0.0f));
             SetInertiaSpeed(bulletGameObject);
         }
     }
@@ -59,7 +56,7 @@ public class PlayerShoot : MonoBehaviour {
     private void SetInertiaSpeed(GameObject bulletGameObject)
     {
         PlayerMovement playerController = gameObject.GetComponent<PlayerMovement>();
-        BulletBehaviour bulletBehaviour = bulletGameObject.GetComponent<BulletBehaviour>();
+        ProjectileMovement bulletBehaviour = bulletGameObject.GetComponent<ProjectileMovement>();
 
         if (playerController != null && bulletBehaviour != null)
         {
@@ -75,17 +72,9 @@ public class PlayerShoot : MonoBehaviour {
 
             if (timeNow - lastShootTime >= ShootingCooldown)
             {
-                if (FireballPrefab != null)
-                {
-                    GameObject fireballGo = (GameObject)Instantiate(FireballPrefab, ShootingPoint.position, gameObject.transform.rotation);
-                    ParticleSystem ps = fireballGo.GetComponent<ParticleSystem>();
-                    PlayerMovement playerController = gameObject.GetComponent<PlayerMovement>();
-                    ps.startSpeed += playerController.Speed;
-                    ps.Emit(1);
-                }
-                //GameObject bulletGameObject = (GameObject)Instantiate(SmallShootPrefab, ShootingPoint.position, gameObject.transform.rotation);
-                //SetInertiaSpeed(bulletGameObject);
-                //lastShootTime = timeNow;
+                GameObject bulletGameObject = (GameObject)Instantiate(SmallShootPrefab, ShootingPoint.position, gameObject.transform.rotation * Quaternion.Euler(ShootingAngle, 0.0f, 0.0f));
+                SetInertiaSpeed(bulletGameObject);
+                lastShootTime = timeNow;
             }
         }
     }

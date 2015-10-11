@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 218362244}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 755641554}
-  distance: 7
+  distance: 9
   height: 6.5
   rotationDamping: 0
   heightDamping: 0
@@ -585,7 +585,7 @@ GameObject:
   - 114: {fileID: 755641559}
   - 114: {fileID: 755641560}
   - 114: {fileID: 755641561}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -698,7 +698,7 @@ MonoBehaviour:
   SmallShootPrefab: {fileID: 112594, guid: a08a4ffab04df0645afa0be3cfc3d31d, type: 2}
   BigShootPrefab: {fileID: 112594, guid: 2306281e0534817419afe4784dd2c7ef, type: 2}
   ShootingCooldown: .100000001
-  FireballPrefab: {fileID: 0}
+  ShootingAngle: 2
 --- !u!114 &755641558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -981,7 +981,7 @@ GameObject:
   - 33: {fileID: 1117009735}
   - 136: {fileID: 1117009734}
   - 23: {fileID: 1117009733}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1654,7 +1654,7 @@ GameObject:
   - 23: {fileID: 2144979243}
   - 64: {fileID: 2144979242}
   - 114: {fileID: 2144979241}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: InitialFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

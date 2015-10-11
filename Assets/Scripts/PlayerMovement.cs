@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            if (inputManager.GetButtonDown("Jump"))
+            if (inputManager.GetButtonDown("Jump") && controller.isGrounded)
             {
                 moveDirection.y = JumpSpeed;
             }

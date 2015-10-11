@@ -12,7 +12,7 @@ GameObject:
   - 23: {fileID: 2375284}
   - 64: {fileID: 6499906}
   - 114: {fileID: 11436998}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FloorModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
+  m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 22352853f4c2fa04a9644f06c104b0d1, type: 3}
 --- !u!65 &6576198
 BoxCollider:

@@ -11,6 +11,7 @@ public class PlayerCollision : MonoBehaviour {
         {
             case "obstacle":
                 ObstacleCollision(hit);
+
                 break;
             case "collectible":
                 CollectibleCollision(hit);
@@ -55,6 +56,8 @@ public class PlayerCollision : MonoBehaviour {
 
         Vector3 pushDir = new Vector3(hit.moveDirection.x, hit.moveDirection.y, hit.moveDirection.z);
         body.velocity = pushDir * Strenght;
+
+        hit.gameObject.SendMessage("TakeDamage", 100);
 
         ObstacleBehaviour ob = hit.gameObject.GetComponent<ObstacleBehaviour>();
 

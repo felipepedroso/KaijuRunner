@@ -6,4 +6,5 @@ public class CollectibleBehaviour : MonoBehaviour {
 
     public CollectibleType Type;
     public int Value;
+
 }

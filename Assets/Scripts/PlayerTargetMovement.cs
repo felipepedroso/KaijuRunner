@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TargetMovement : MonoBehaviour
+public class PlayerTargetMovement : MonoBehaviour
 {
     public float TrackWidth;
     public float Margin;

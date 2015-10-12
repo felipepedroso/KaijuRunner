@@ -564,9 +564,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 755641554}
   distance: 9
-  height: 6.5
+  height: 6
   rotationDamping: 0
-  heightDamping: 0
+  heightDamping: 3
 --- !u!1 &755641550
 GameObject:
   m_ObjectHideFlags: 0

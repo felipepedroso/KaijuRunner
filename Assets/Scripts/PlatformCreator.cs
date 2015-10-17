@@ -4,11 +4,19 @@ using System.Collections;
 public class PlatformCreator : MonoBehaviour {
     public GameObject FloorPrefab;
     public GameObject CurrentPlane;
-
     public static int PlataformNameCount = 1;
+
+
+    public GameObject DebugPoint;
+
     void Start() 
     {
-        FloorPrefab = Resources.Load<GameObject>("Prefabs/Floor");
+        GameObject[] FloorPrefabs = Resources.LoadAll<GameObject>("StreetBlocks");
+
+        if (FloorPrefabs != null && FloorPrefabs.Length > 0)
+        {
+            FloorPrefab = FloorPrefabs[Random.Range(0, FloorPrefabs.Length)];
+        }
     }
 
     void OnTriggerEnter(Collider other) 
@@ -17,14 +25,20 @@ public class PlatformCreator : MonoBehaviour {
         {
             if (FloorPrefab != null)
             {
-				Vector3 currentSize = CurrentPlane.GetComponent<Renderer>().bounds.size;
-				Vector3 currentPosition = CurrentPlane.transform.position;
+				Vector3 currentSize = CurrentPlane.GetComponent<MeshCollider>().bounds.size;
+                Vector3 currentPosition = gameObject.transform.parent.position;
 
-                //Vector3 position = AttachPoint.position + Vector3.forward * FloorPrefab.transform.GetChild(0).transform.localScale.z * 0.5f;
-				Vector3 position = new Vector3(0, 0, currentPosition.z + currentSize.z);
-                GameObject newFloor = (GameObject)Instantiate(FloorPrefab, position, Quaternion.identity);
+                Vector3 zeroPosition = new Vector3(currentPosition.x, currentPosition.y, currentPosition.z + currentSize.z / 2);
+
+                if (DebugPoint)
+                {
+                    DebugPoint.transform.position = zeroPosition;
+                }
+
+                GameObject newFloor = (GameObject)Instantiate(FloorPrefab, zeroPosition, Quaternion.identity);
+                newFloor.SendMessage("FixPosition", zeroPosition);
                 newFloor.name = "Floor" + PlataformNameCount++;
-                Destroy(gameObject);
+                //Destroy(gameObject);
             }
         }
         

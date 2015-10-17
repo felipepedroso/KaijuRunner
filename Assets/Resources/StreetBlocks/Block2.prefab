@@ -8927,8 +8927,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlatformGameObject: {fileID: 168178}
-  Rows: 15
-  Columns: 5
+  Rows: 12
+  Columns: 4
   RowsToSkip: 0
   ObstaclesPrefabs:
   - {fileID: 177410, guid: 341b9d355f6d2184993c5112d317f09f, type: 2}
@@ -9002,6 +9002,14 @@ Prefab:
       propertyPath: Plane
       value: 
       objectReference: {fileID: 168178}
+    - target: {fileID: 0}
+      propertyPath: Rows
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Columns
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 159296}

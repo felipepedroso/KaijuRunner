@@ -13,6 +13,9 @@ public class ElementsCreator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        ObstaclesPrefabs = Resources.LoadAll<GameObject>("Obstacles");
+        CollectiblesPrefabs = Resources.LoadAll<GameObject>("Items");
+
         if (ObstaclesPrefabs == null || ObstaclesPrefabs.Length < 1 || CollectiblesPrefabs == null || CollectiblesPrefabs.Length < 1 || PlatformGameObject == null)
         {
             Debug.LogError("Please check if the prefabs or the Platform GameObject were set.");

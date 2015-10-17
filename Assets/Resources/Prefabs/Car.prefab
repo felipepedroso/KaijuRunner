@@ -426,7 +426,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingHealth: 100
   CurrentHealth: 0
-  ExplosionPrefab: {fileID: 100010, guid: 93f2c95ad8a9048aba5958f95784f8f5, type: 2}
+  ExplosionPrefab: {fileID: 100008, guid: c466276509f8b40a59f02d115254fc25, type: 2}
+  ExplosionRadius: 0
+  ExplosionPower: 0
 --- !u!114 &11472324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -517,7 +519,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: ExplosionPrefab
       value: 
-      objectReference: {fileID: 100010, guid: 93f2c95ad8a9048aba5958f95784f8f5, type: 2}
+      objectReference: {fileID: 100008, guid: c466276509f8b40a59f02d115254fc25, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 177410}

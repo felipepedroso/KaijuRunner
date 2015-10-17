@@ -2,23 +2,25 @@
 using System.Collections;
 
 public class ElementsCreator : MonoBehaviour {
-    public GameObject[] ObstaclesPrefabs;
-    public GameObject[] CollectiblesPrefabs;
     public GameObject PlatformGameObject;
-
     public int Rows;
     public int Columns;
+    [Range (0, 3)]
+    public int RowsToSkip;
+
+    public GameObject[] ObstaclesPrefabs;
+    public GameObject[] CollectiblesPrefabs;
 
 	// Use this for initialization
 	void Start () {
         if (ObstaclesPrefabs == null || ObstaclesPrefabs.Length < 1 || CollectiblesPrefabs == null || CollectiblesPrefabs.Length < 1 || PlatformGameObject == null)
         {
-            Debug.LogError("Please check if the obstacles prefabs or the Platform GameObject where set.");
+            Debug.LogError("Please check if the prefabs or the Platform GameObject were set.");
             return;
         }
-        
-        Vector3 platformPosition = PlatformGameObject.transform.position;
-        Vector3 platformDimensions = PlatformGameObject.GetComponent<Renderer>().bounds.size;
+
+        Vector3 platformPosition = gameObject.transform.parent.position;
+        Vector3 platformDimensions = PlatformGameObject.GetComponent<MeshCollider>().bounds.size;
 
         float minZ = platformPosition.z - platformDimensions.z/2;
         float minX = platformPosition.x - platformDimensions.x * 0.125f;
@@ -28,6 +30,11 @@ public class ElementsCreator : MonoBehaviour {
 
         for (int i = 0; i < Rows; i++)
         {
+            if (i < RowsToSkip)
+            {
+                continue;
+            }
+
             for (int j = 0; j < Columns; j++)
             {
                 int randomNumber = Random.Range(0, 100);

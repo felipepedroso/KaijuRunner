@@ -880,6 +880,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &182686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 480240}
+  - 114: {fileID: 11424908}
+  m_Layer: 0
+  m_Name: ElementsCreator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &186536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,6 +1724,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 415018}
   m_RootOrder: 1
+--- !u!4 &480240
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 480716}
+  m_RootOrder: 3
 --- !u!4 &480716
 Transform:
   m_ObjectHideFlags: 1
@@ -1721,6 +1749,7 @@ Transform:
   - {fileID: 414268}
   - {fileID: 404790}
   - {fileID: 445640}
+  - {fileID: 480240}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &483034
@@ -3785,6 +3814,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Plane: {fileID: 186536}
+--- !u!114 &11424908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39bbd024f982854493d37c3db66b2f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlatformGameObject: {fileID: 186536}
+  Rows: 15
+  Columns: 5
+  RowsToSkip: 0
+  ObstaclesPrefabs:
+  - {fileID: 177410, guid: 341b9d355f6d2184993c5112d317f09f, type: 2}
+  CollectiblesPrefabs:
+  - {fileID: 114134, guid: 5aa27da5cc991a748affc4eab666b645, type: 2}
+  - {fileID: 181144, guid: 658888c648a449f4c9d0fb0db497c4cd, type: 2}
 --- !u!114 &11464090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3843,6 +3892,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 50.5
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: PlatformGameObject
+      value: 
+      objectReference: {fileID: 186536}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186988}

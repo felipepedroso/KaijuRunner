@@ -29,7 +29,6 @@ public class ObstacleHealth : MonoBehaviour {
 
                 var explosionPos = gameObject.transform.position;
 
-
                 float damageMultiplier = amount / StartingHealth > 0.8 ? 2.0f : 1.0f;
                 float explosionRadius = ExplosionRadius * damageMultiplier;
                 float explosionPower = ExplosionPower * damageMultiplier;

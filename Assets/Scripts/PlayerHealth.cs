@@ -16,6 +16,7 @@ public class PlayerHealth : MonoBehaviour {
     private bool receivedDamage;
     private PlayerMovement controller;
     private PlayerMovement playerShooter;
+    private bool powerUpInvencible;
 
     // Use this for initialization
     void Start () {
@@ -43,7 +44,11 @@ public class PlayerHealth : MonoBehaviour {
     public void TakeDamage(int amount)
     {
         receivedDamage = true;
-        CurrentHealth -= IsInvencible ? 0 : amount;
+        if (!IsInvencible)
+        {
+            CurrentHealth -= powerUpInvencible ? 0 : amount;
+        }
+        
 
         if (HealthSlider != null)
         {
@@ -59,6 +64,11 @@ public class PlayerHealth : MonoBehaviour {
     public void LifeCollected(int amount)
     {
         CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, StartingHealth);
+    }
+
+    public void SetPowerUpInvencibility(bool enabled)
+    {
+        powerUpInvencible = enabled;
     }
 
     private void Death()

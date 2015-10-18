@@ -13,6 +13,11 @@ public class PlayerMovement : MonoBehaviour
     public float JumpSpeed = 8.0F;
     public float Gravity = 20.0F;
     public Transform PlayerTarget;
+    private bool boostSpeed;
+    private float speedMultiplier;
+    private float boostBegin;
+    [Range (1.0f, 10.0f)]
+    public float MaximumBoostTime;
 
     // Use this for initialization
     void Start()
@@ -27,11 +32,19 @@ public class PlayerMovement : MonoBehaviour
         {
             CharacterController controller = GetComponent<CharacterController>();
 
+            if (boostSpeed)
+            {
+                if (Time.time - boostBegin >= MaximumBoostTime)
+                {
+                    boostSpeed = false;
+                    gameObject.SendMessage("SetPowerUpInvencibility", false);
+                }
+            }
 
             if (controller.isGrounded)
             {
                 moveDirection = transform.TransformDirection(Vector3.forward);
-                moveDirection *= Speed;
+                moveDirection *= boostSpeed ? Speed * speedMultiplier : Speed;
 
                 if (PlayerTarget != null)
                 {
@@ -44,13 +57,18 @@ public class PlayerMovement : MonoBehaviour
                 moveDirection.y = JumpSpeed;
             }
 
-            moveDirection.y -= Gravity * Time.deltaTime;
-            controller.Move(moveDirection * Time.deltaTime);
+            moveDirection.y -= Gravity * Time.fixedDeltaTime;
+            controller.Move(moveDirection * Time.fixedDeltaTime);
         }
     }
 
-
-
+    public void SpeedCollected(float value)
+    {
+        boostSpeed = true;
+        speedMultiplier = value;
+        boostBegin = Time.time;
+        gameObject.SendMessage("SetPowerUpInvencibility", true);
+    }
 
     void Update()
     {

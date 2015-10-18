@@ -227,48 +227,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 280337795}
---- !u!1001 &320683480
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 435834, guid: cdb81cd2d40d1d2458d25fd2d7deb3e9, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 435834, guid: cdb81cd2d40d1d2458d25fd2d7deb3e9, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: .550000012
-      objectReference: {fileID: 0}
-    - target: {fileID: 435834, guid: cdb81cd2d40d1d2458d25fd2d7deb3e9, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 435834, guid: cdb81cd2d40d1d2458d25fd2d7deb3e9, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 435834, guid: cdb81cd2d40d1d2458d25fd2d7deb3e9, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 435834, guid: cdb81cd2d40d1d2458d25fd2d7deb3e9, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 435834, guid: cdb81cd2d40d1d2458d25fd2d7deb3e9, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 435834, guid: cdb81cd2d40d1d2458d25fd2d7deb3e9, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: cdb81cd2d40d1d2458d25fd2d7deb3e9, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &382423880
 Prefab:
   m_ObjectHideFlags: 0
@@ -704,6 +662,7 @@ MonoBehaviour:
   JumpSpeed: 8
   Gravity: 20
   PlayerTarget: {fileID: 2083175063}
+  MaximumBoostTime: 5
 --- !u!114 &833885452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,7 +731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingHealth: 100
   CurrentHealth: 0
-  IsInvencible: 1
+  IsInvencible: 0
   HealthSlider: {fileID: 486830507}
   DamageOverlay: {fileID: 280337797}
   DamageFadingSpeed: 5

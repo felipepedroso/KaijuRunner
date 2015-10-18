@@ -36,7 +36,8 @@ public class PlayerCollision : MonoBehaviour {
                 case CollectibleBehaviour.CollectibleType.LIFE:
                     gameObject.SendMessage("LifeCollected", cb.Value);
                     break;
-                case CollectibleBehaviour.CollectibleType.POWERUP:
+                case CollectibleBehaviour.CollectibleType.SPEED:
+                    gameObject.SendMessage("SpeedCollected", cb.Value);
                     break;
                 default:
                     break;

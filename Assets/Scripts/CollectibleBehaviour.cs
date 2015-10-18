@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class CollectibleBehaviour : MonoBehaviour {
-    public enum CollectibleType { COIN, LIFE, POWERUP }
+    public enum CollectibleType { COIN, LIFE, SPEED }
 
     public CollectibleType Type;
-    public int Value;
+    public float Value;
 
 }

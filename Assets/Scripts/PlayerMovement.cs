@@ -18,11 +18,13 @@ public class PlayerMovement : MonoBehaviour
     private float boostBegin;
     [Range (1.0f, 10.0f)]
     public float MaximumBoostTime;
+    private Animator animator;
 
     // Use this for initialization
     void Start()
     {
         inputManager = GameObject.FindObjectOfType<InputManager>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (controller.isGrounded)
             {
+                animator.SetBool("IsJumping", false);
                 moveDirection = transform.TransformDirection(Vector3.forward);
                 moveDirection *= boostSpeed ? Speed * speedMultiplier : Speed;
 
@@ -55,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
             if (inputManager.GetButtonDown("Jump") && controller.isGrounded)
             {
                 moveDirection.y = JumpSpeed;
+                animator.SetBool("IsJumping", true);
             }
 
             moveDirection.y -= Gravity * Time.fixedDeltaTime;

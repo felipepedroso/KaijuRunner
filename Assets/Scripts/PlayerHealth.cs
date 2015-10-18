@@ -27,6 +27,11 @@ public class PlayerHealth : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (CurrentHealth <= 0)
+        {
+            Death();
+        }
+
         if (DamageOverlay != null)
         {
             if (receivedDamage)
@@ -54,11 +59,6 @@ public class PlayerHealth : MonoBehaviour {
         {
             HealthSlider.value = (float)CurrentHealth / (float)StartingHealth;
         }
-
-        if (CurrentHealth <= 0)
-        {
-            Death();
-        }
     }
 
     public void LifeCollected(int amount)
@@ -83,5 +83,9 @@ public class PlayerHealth : MonoBehaviour {
         {
             playerShooter.enabled = false;
         }
+
+        this.enabled = false;
+
+        gameObject.GetComponent<Animator>().SetTrigger("Die");
     }
 }

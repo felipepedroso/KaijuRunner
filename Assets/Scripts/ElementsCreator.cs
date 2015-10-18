@@ -10,6 +10,42 @@ public class ElementsCreator : MonoBehaviour {
 
     public GameObject[] ObstaclesPrefabs;
     public GameObject[] CollectiblesPrefabs;
+    public bool DebugPositions;
+
+    public void Update()
+    {
+        if (DebugPositions)
+        {
+            Vector3 platformPosition = gameObject.transform.parent.position;
+            Vector3 platformDimensions = PlatformGameObject.GetComponent<MeshCollider>().bounds.size;
+
+            float minZ = platformPosition.z - platformDimensions.z / 2;
+            float minX = platformPosition.x - platformDimensions.x * 0.125f;
+
+            float maxZ = platformPosition.z + platformDimensions.z / 2;
+            float maxX = platformPosition.x + platformDimensions.x * 0.125f;
+
+            float zOffset = platformDimensions.z / (Rows + 1);
+            float xOffset = (platformDimensions.x * 0.25f) / (Columns + 1);
+
+            float heigth = 1.0f;
+
+            for (int i = 0; i < Rows; i++)
+            {
+                Vector3 p1 = new Vector3(minX, heigth, minZ + (i + 1) * zOffset);
+                Vector3 p2 = new Vector3(maxX, heigth, minZ + (i + 1) * zOffset);
+
+                Debug.DrawLine(p1, p2);
+            }
+
+            for (int j = 0; j < Columns; j++)
+            {
+                Vector3 p1 = new Vector3(minX + (j + 1) * xOffset, heigth, minZ);
+                Vector3 p2 = new Vector3(minX + (j + 1) * xOffset, heigth, maxZ);
+                Debug.DrawLine(p1, p2);
+            }
+        }
+    }
 
 	// Use this for initialization
 	void Start () {

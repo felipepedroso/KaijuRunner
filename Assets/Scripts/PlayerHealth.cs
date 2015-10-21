@@ -14,15 +14,15 @@ public class PlayerHealth : MonoBehaviour {
     public float DamageFadingSpeed;
     public Color DamageColor = new Color(1f, 0f, 0f, 0.1f);
     private bool receivedDamage;
-    private PlayerMovement controller;
-    private PlayerMovement playerShooter;
+    private PlayerMove controller;
+    private PlayerShoot playerShooter;
     private bool powerUpInvencible;
 
     // Use this for initialization
     void Start () {
         CurrentHealth = StartingHealth;
-        controller = gameObject.GetComponent<PlayerMovement>();
-        playerShooter = gameObject.GetComponent<PlayerMovement>();
+        controller = gameObject.GetComponent<PlayerMove>();
+        playerShooter = gameObject.GetComponent<PlayerShoot>();
     }
 	
 	// Update is called once per frame
@@ -84,7 +84,7 @@ public class PlayerHealth : MonoBehaviour {
             playerShooter.enabled = false;
         }
 
-        this.enabled = false;
+        //this.enabled = false;
 
         gameObject.GetComponent<Animator>().SetTrigger("Die");
     }

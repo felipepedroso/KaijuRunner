@@ -13,15 +13,22 @@ public class PlayerShoot : MonoBehaviour {
     public GameObject BigShootPrefab;
     public float ShootingCooldown;
     public float ShootingAngle;
+    private PlayerMove playerController;
 
     void Start () {
         timePressedShoot = 0;
         lastShootTime = 0;
 
         inputManager = GameObject.FindObjectOfType<InputManager>();
-	}
+        playerController = gameObject.GetComponent<PlayerMove>();
+    }
 	
 	void Update () {
+        if (!playerController.ShouldRun)
+        {
+            return;
+        }
+
         if (inputManager.GetButtonDown("Fire1"))
         {
             timePressedShoot = Time.time;
@@ -55,12 +62,11 @@ public class PlayerShoot : MonoBehaviour {
 
     private void SetInertiaSpeed(GameObject bulletGameObject)
     {
-        PlayerMovement playerController = gameObject.GetComponent<PlayerMovement>();
         ProjectileMovement bulletBehaviour = bulletGameObject.GetComponent<ProjectileMovement>();
 
         if (playerController != null && bulletBehaviour != null)
         {
-            bulletBehaviour.Speed += playerController.Speed;
+            bulletBehaviour.Speed += playerController.speed;
         }
     }
 

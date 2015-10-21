@@ -21,7 +21,6 @@ public class ObstacleHealth : MonoBehaviour {
 
         if (CurrentHealth <= 0)
         {
-            Debug.Log("Destroyed Obstacle");
             if (ExplosionPrefab != null)
             {
                 GameObject go = (GameObject)Instantiate(ExplosionPrefab, gameObject.transform.position, gameObject.transform.rotation);

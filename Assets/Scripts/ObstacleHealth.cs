@@ -49,6 +49,7 @@ public class ObstacleHealth : MonoBehaviour {
                     }
                 }
             }
+            gameObject.layer = 13;
             Destroy(gameObject, 1.0f);
         }
     }

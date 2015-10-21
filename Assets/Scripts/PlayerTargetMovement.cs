@@ -8,7 +8,7 @@ public class PlayerTargetMovement : MonoBehaviour
     public float DistanceFromPlayer;
 
     public float Speed;
-    private float targetXBounds;
+    public float targetXBounds;
     private InputManager inputManager;
     private CharacterController playerController;
     private Transform PlayerTransform;

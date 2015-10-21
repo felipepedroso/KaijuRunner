@@ -42,6 +42,7 @@ public class PlayerMove : MonoBehaviour {
 
         if (controller.isGrounded)
         {
+            animator.SetBool("IsJumping", false);
             moveDirection = transform.TransformDirection(Vector3.forward);
             moveDirection *= boostSpeed ? speed * speedMultiplier : speed; ;
 
@@ -50,14 +51,22 @@ public class PlayerMove : MonoBehaviour {
                 gameObject.transform.LookAt(Target.transform);
             }
 
-            if (Input.GetButton("Jump"))
+            if (Input.GetButtonUp("Jump"))
             {
                 moveDirection.y = jumpSpeed;
+                animator.SetBool("IsJumping", true);
             }
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);
+
+        if (Target != null)
+        {
+            PlayerTargetMovement targetMovement = Target.GetComponent<PlayerTargetMovement>();
+            Vector3 playerPosition = gameObject.transform.position;
+            gameObject.transform.position = new Vector3(Mathf.Clamp(playerPosition.x, -targetMovement.targetXBounds,targetMovement.targetXBounds), playerPosition.y, playerPosition.z);
+        }
     }
 
     private void CheckBoostSpeed()

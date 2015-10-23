@@ -53,7 +53,7 @@ public class InputManager : MonoBehaviour {
     private void InitializeExpressionMapping()
     {
         expressionButtonsMap = new Dictionary<string, ExpressionButton>();
-        expressionButtonsMap.Add(JUMP_BUTTON, new ExpressionButton(JumpExpression, 100, 0.1f));
+        expressionButtonsMap.Add(JUMP_BUTTON, new ExpressionButton(JumpExpression, 80, 0.1f));
         expressionButtonsMap.Add(FIRE_BUTTON, new ExpressionButton(FireExpression, 60, 0.1f));
     }
 
@@ -225,7 +225,7 @@ public class InputManager : MonoBehaviour {
             var expressionButton = expressionButtonsMap[button];
             
             expressionButton.UpdateStatus(expressionsData);
-            //Debug.Log(expressionButton);
+            Debug.Log(expressionButton);
             buttonHold[button] = expressionButton.ButtonHold;
             buttonUp[button] = expressionButton.ButtonUp;
             buttonDown[button] = expressionButton.ButtonDown;

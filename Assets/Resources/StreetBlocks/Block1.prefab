@@ -895,7 +895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &186536
 GameObject:
   m_ObjectHideFlags: 0
@@ -3834,7 +3834,7 @@ MonoBehaviour:
   CollectiblesPrefabs:
   - {fileID: 114134, guid: 5aa27da5cc991a748affc4eab666b645, type: 2}
   - {fileID: 0}
-  DebugPositions: 0
+  DebugPositions: 1
 --- !u!114 &11464090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3874,6 +3874,7 @@ MonoBehaviour:
   AvailableRotations: 00000000b4000000
   ObjectsToKeepPosition:
   - {fileID: 195034}
+  - {fileID: 182686}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

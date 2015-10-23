@@ -51,7 +51,7 @@ public class PlayerMove : MonoBehaviour {
                 gameObject.transform.LookAt(Target.transform);
             }
 
-            if (Input.GetButtonUp("Jump"))
+            if (inputManager.GetButton("Jump"))
             {
                 moveDirection.y = jumpSpeed;
                 animator.SetBool("IsJumping", true);

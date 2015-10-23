@@ -6,13 +6,15 @@ public class ProjectileDamage : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collided on " + collision.gameObject.name);
+        //Debug.Log("Collided on " + collision.gameObject.name);
         GameObject collisionGameObject = collision.gameObject;
 
         if (collisionGameObject.tag.ToLower() == "obstacle")
         {
             collisionGameObject.SendMessage("TakeDamage", DamageAmount);
-            Destroy(gameObject);
+            
         }
+
+        Destroy(gameObject);
     }
 }

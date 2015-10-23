@@ -32,6 +32,11 @@ public class ElementsCreator : MonoBehaviour {
 
             for (int i = 0; i < Rows; i++)
             {
+                if (RowsToSkip > i)
+                {
+                    continue;
+                }
+
                 Vector3 p1 = new Vector3(minX, heigth, minZ + (i + 1) * zOffset);
                 Vector3 p2 = new Vector3(maxX, heigth, minZ + (i + 1) * zOffset);
 
@@ -59,6 +64,7 @@ public class ElementsCreator : MonoBehaviour {
         }
 
         Vector3 platformPosition = gameObject.transform.parent.position;
+        
         Vector3 platformDimensions = PlatformGameObject.GetComponent<MeshCollider>().bounds.size;
 
         float minZ = platformPosition.z - platformDimensions.z/2;
@@ -69,7 +75,7 @@ public class ElementsCreator : MonoBehaviour {
 
         for (int i = 0; i < Rows; i++)
         {
-            if (i < RowsToSkip)
+            if (RowsToSkip> i)
             {
                 continue;
             }

@@ -3828,7 +3828,7 @@ MonoBehaviour:
   PlatformGameObject: {fileID: 186536}
   Rows: 12
   Columns: 4
-  RowsToSkip: 1
+  RowsToSkip: 0
   ObstaclesPrefabs:
   - {fileID: 177410, guid: 341b9d355f6d2184993c5112d317f09f, type: 2}
   CollectiblesPrefabs:

@@ -225,7 +225,7 @@ public class InputManager : MonoBehaviour {
             var expressionButton = expressionButtonsMap[button];
             
             expressionButton.UpdateStatus(expressionsData);
-            Debug.Log(expressionButton);
+            //Debug.Log(expressionButton);
             buttonHold[button] = expressionButton.ButtonHold;
             buttonUp[button] = expressionButton.ButtonUp;
             buttonDown[button] = expressionButton.ButtonDown;
